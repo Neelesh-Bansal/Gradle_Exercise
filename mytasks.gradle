@@ -1,0 +1,5 @@
+task sayHello {
+  println"Say Hello to mytasks.gradle"
+}
+
+

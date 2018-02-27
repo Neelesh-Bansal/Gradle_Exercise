@@ -1,0 +1,52 @@
+group 'com.ttn'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    //mavenCentral()
+    maven{
+        url "https://mvnrepository.com/artifact/org.apache.commons/commons-lang3"  //question 5
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+}
+
+jar{
+    manifest{
+        attributes ("main-class":"simple")
+    }
+}
+
+sourceSets {
+    main{
+        java{
+            srcDir "src/main/java2"    //question 2
+        }
+        resources{
+            exclude "file1.xml"         // question 3
+        }
+    }
+}
+
+
+jar{      //question 4
+    from configurations.compile.collect {zipTree it}
+
+}
+
+jar{     //question 1
+    manifest{
+        attributes("main-class":"simple")
+    }
+}
+
+
+apply from:"mytasks.gradle"        //Question 6
